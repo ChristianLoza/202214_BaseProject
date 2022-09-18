@@ -1,0 +1,2249 @@
+{
+	"info": {
+		"_postman_id": "b10886ca-cbcd-43cd-9ed3-bcbf82295920",
+		"name": "Parcial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19526092"
+	},
+	"item": [
+		{
+			"name": "Club",
+			"item": [
+				{
+					"name": "agregar club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"club_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Hackett-Ratke\",\n    \"descripcion\": \"Carcinoma in situ of endocervix\",\n    \"address\": \"765 Buena Vista Junction\",\n    \"imagen\": \"http://dummyimage.com/181x100.png/dddddd/000000\",\n    \"fecha_fundacion\": \"2022-03-14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clubs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs"
+							]
+						},
+						"description": "This request creates a new museum. The API returns the created resource with the assigned ID."
+					},
+					"response": [
+						{
+							"name": "Add a museum",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n   \"name\": \"Smithsonian national museum of natural history\",\n   \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n   \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n   \"city\": \"Washington DC\",\n   \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "agregar club invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"La descripcion del club no debe superar los 100 caracteres\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"Hackett-Ratke\",\"descripcion\":\"Carcinoma in situ of endocervix\",\"address\":\"765 Buena Vista Junction\",\"imagen\":\"http://dummyimage.com/181x100.png/dddddd/000000\",\"fecha_fundacion\":\"2022-03-14\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clubs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs"
+							]
+						},
+						"description": "This request creates a new museum. The API returns the created resource with the assigned ID."
+					},
+					"response": [
+						{
+							"name": "Add a museum",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n   \"name\": \"Smithsonian national museum of natural history\",\n   \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n   \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n   \"city\": \"Washington DC\",\n   \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "obtener clubes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of museums > ' + 0, function () {",
+									"    var data = pm.response.json()",
+									"    pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clubs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all museums",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n        \"name\": \"Bendigo Art Gallery\",\n        \"description\": \"Located in Bendigo, Victoria, we are one of the oldest and largest regional galleries in Australia. Our collection is extensive, with an emphasis on 19th century European art and Australian art from the 1800s, alongside a strong collection of contemporary Australian art.\\nOver the last decade, we have cemented a reputation for presenting innovative international exhibitions alongside a dynamic and varied suite of public programs and events.\",\n        \"address\": \"42 View Street\",\n        \"city\": \"Bendigo\",\n        \"image\": \"https://www.bendigoregion.com.au/sites/default/files/styles/large/public/2019-05/Bendigo%20Art%20Gallery.jpg?itok=mbJ4vxuK\",\n        \"artworks\": [\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Self portrait\",\n                \"year\": 1931,\n                \"description\": \"Painted in 1948, Cossington Smith's self-portrait represents her vibrant use of light-infused colour and interest in structure and form. Depicting herself in the prime of her long career, the short brushstrokes, laden with paint, build up a strong colour portrait and capture the dedication she felt towards her art in her intense focused gaze and the determined set of her lips.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.portrait.gov.au/files/b/b/2/c/i5398.jpg\"\n            },\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac120004\",\n                \"name\": \"Self portrait in the studio\",\n                \"year\": 1976,\n                \"description\": \"Similar to Brett Whiteley's other major paintings of this period, 'Self-portrait in the studio' exudes a sense of sumptuous living and the liquid presence of the harbour through what he called 'the ecstasy-like effect of Ultramarine blue'. Whiteley's tiny mirror self-portrait also reflects the influence of Eastern art in his portrayal of man as merely part of a larger landscape.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.bendigoregion.com.au/sites/default/files/2021-05/brett_whiteley_greg_self.jpg\"\n            },\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac124032\",\n                \"name\": \"Dogs\",\n                \"year\": 1975,\n                \"description\": \"Brett Whiteley felt deeply connected to animals since childhood. In fact, between 1965 and 1988 he staged four exhibitions whose predominant or exclusive subject was animals that he had observed in zoos, domestic environments and in nature.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.bendigoregion.com.au/sites/default/files/2021-05/brett_whiteley_greg_dogs.jpg\"\n            }\n        ],\n        \"exhibitions\": [\n            {\n                \"id\": \"14f05d0e-1275-11ed-86dd-0242ac120032\",\n                \"name\": \"Brett Whiteley: Drawing is Everything\",\n                \"description\": \"At the heart of Brett Whiteley's extraordinary career was an exceptional talent for drawing.\\nDrawing underpinned everything he did – from painting to sculpture to prints – and was fundamental to his imaginative and creative process. Whiteley's drawing is richly expressive and his bold mastery of line is instantly recognisable. \\nThis major exhibition from the Art Gallery of New South Wales is the first to explore the central place of drawing in Whiteley's practice, featuring rarely seen early works from Sydney and Europe through to the great abstracts that brought Whiteley international fame in the 1960s. Also featured are lyrical landscapes, portraits, interiors and nudes and the iconic imagery of Sydney's Lavender Bay, offering a journey through the career that established him as one of the most prominent Australian artists of the 20th century.\\nDon't miss this rare opportunity to discover the very foundations of Whiteley's creativity and process, as showcased in a collection of drawings, paintings, and sculptures suffused with the unmistakable personality of the great Australian master.\"\n            },\n            {\n                \"id\": \"14ffg05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Modern Australia\",\n                \"description\": \"This selection of works from the Gallery's collection traces the key movements in Modern Australian art and design, and the search for a distinctive Australian visual arts style throughout the mid twentieth century.\"\n            }\n        ]\n    },\n    {\n        \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\n        \"name\": \"Museum of Modern Art\",\n        \"description\": \"At The Museum of Modern Art and MoMA PS1, we celebrate creativity, openness, tolerance, and generosity. We aim to be inclusive places— both onsite and online—where diverse cultural, artistic, social, and political positions are welcome. We're committed to sharing the most thought-provoking modern and contemporary art, and hope you will join us in exploring the art, ideas, and issues of our time.\",\n        \"address\": \"11 West 53 Street, Manhattan\",\n        \"city\": \"New York City\",\n        \"image\": \"https://media.cntraveler.com/photos/5dae0325b45cd80008161cf3/master/pass/MOMA-2019_IVRPHOTO-4373_ArtistChoice_HB_007-2-2000x1125.jpg\",\n        \"artworks\": [\n            {\n                \"id\": \"14fgff05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Connaissance du monde\",\n                \"year\": 1996,\n                \"description\": \"In the late 1970s, after decades of making handwritten manuscripts, Bouabré began to draw on found cardboard, combining image and text. From the 1980s onwards, as the scope of his interests grew, he embarked on an all-encompassing project, drawing from observation almost daily. He titled the open-ended series of drawings Connaissance du Monde, and worked on it until his death in 2014, systematically compiling and classifying forms, ideas, and a wide range of phenomena, including domestic objects, cloud formations, and tribal scarifications, as well as the political climate and world events.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://universes.art/fileadmin/_processed_/2/b/csm_14_ivory_coast_16b2369926.jpg\"\n            }\n        ],\n        \"exhibitions\": [\n            {\n                \"id\": \"14f05d0e-127fg5-11ed-861d-0242ac120032\",\n                \"name\": \"Frédéric Bruly Bouabré: World Unbound\",\n                \"description\": \"The work of the Ivorian artist Frédéric Bruly Bouabré had a single objective: to record and transmit information about the known universe. Devoting his life to a quest for knowledge, Bouabré captured and codified subjects from a range of sources, including cultural traditions, folklore, religious and spiritual belief systems, philosophy, and popular culture. “I do not work from my imagination,\\\" he once said. “I observe, and what I see delights me.”\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "obtener clubes por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clubs/{{clubId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get one museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/{{museum_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1e061964-1276-11ed-861d-0242ac120002\",\n    \"name\": \"Museum of Modern Art\",\n    \"description\": \"At The Museum of Modern Art and MoMA PS1, we celebrate creativity, openness, tolerance, and generosity. We aim to be inclusive places— both onsite and online—where diverse cultural, artistic, social, and political positions are welcome. We're committed to sharing the most thought-provoking modern and contemporary art, and hope you will join us in exploring the art, ideas, and issues of our time.\",\n    \"address\": \"11 West 53 Street, Manhattan\",\n    \"city\": \"New York City\",\n    \"image\": \"https://media.cntraveler.com/photos/5dae0325b45cd80008161cf3/master/pass/MOMA-2019_IVRPHOTO-4373_ArtistChoice_HB_007-2-2000x1125.jpg\",\n    \"artworks\": [\n        {\n            \"id\": \"2e061964-1276-11ed-861d-0242ac120002\",\n            \"name\": \"Connaissance du monde\",\n            \"year\": 1996,\n            \"description\": \"In the late 1970s, after decades of making handwritten manuscripts, Bouabré began to draw on found cardboard, combining image and text. From the 1980s onwards, as the scope of his interests grew, he embarked on an all-encompassing project, drawing from observation almost daily. He titled the open-ended series of drawings Connaissance du Monde, and worked on it until his death in 2014, systematically compiling and classifying forms, ideas, and a wide range of phenomena, including domestic objects, cloud formations, and tribal scarifications, as well as the political climate and world events.\",\n            \"type\": \"Painting\",\n            \"mainImage\": \"https://universes.art/fileadmin/_processed_/2/b/csm_14_ivory_coast_16b2369926.jpg\"\n        }\n    ],\n    \"exhibitions\": [\n        {\n            \"id\": \"1c061964-1276-11ed-861d-0242ac120002\",\n            \"name\": \"Frédéric Bruly Bouabré: World Unbound\",\n            \"description\": \"The work of the Ivorian artist Frédéric Bruly Bouabré had a single objective: to record and transmit information about the known universe. Devoting his life to a quest for knowledge, Bouabré captured and codified subjects from a range of sources, including cultural traditions, folklore, religious and spiritual belief systems, philosophy, and popular culture. “I do not work from my imagination,\\\" he once said. “I observe, and what I see delights me.”\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "obtener club no valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El club con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clubs/123",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "actualizar club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"Hackett-Ratke\",\"descripcion\":\"Carcinoma in situ of endocervix\",\"address\":\"765 Buena Vista Junction\",\"imagen\":\"http://dummyimage.com/181x100.png/dddddd/000000\",\"fecha_fundacion\":\"2022-03-14\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clubs/{{clubId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update a museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/{{museum_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"144602ac-1278-11ed-861d-0242ac120002\",\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "actualizar club invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El club con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"Hackett-Ratke\",\"descripcion\":\"Carcinoma in situ of endocervix\",\"address\":\"765 Buena Vista Junction\",\"imagen\":\"http://dummyimage.com/181x100.png/dddddd/000000\",\"fecha_fundacion\":\"2022-03-14\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clubs/123",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/museums/0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "borrar club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clubs/{{clubId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "borrar club invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El club con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clubs/{{baseUrl}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clubs",
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Socio",
+			"item": [
+				{
+					"name": "agregar socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"socio_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Jhon Dallas\",\n    \"email\": \"socio@maa.pe\",\n    \"fecha_nacimiento\": \"1988-05-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members"
+							]
+						},
+						"description": "This request creates a new museum. The API returns the created resource with the assigned ID."
+					},
+					"response": [
+						{
+							"name": "Add a museum",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n   \"name\": \"Smithsonian national museum of natural history\",\n   \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n   \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n   \"city\": \"Washington DC\",\n   \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "agregar socio invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El correo de socio debe contener @\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Jhon Dallas\",\n    \"email\": \"socio@maa.pe\",\n    \"fecha_nacimiento\": \"1988-05-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members"
+							]
+						},
+						"description": "This request creates a new museum. The API returns the created resource with the assigned ID."
+					},
+					"response": [
+						{
+							"name": "Add a museum",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n   \"name\": \"Smithsonian national museum of natural history\",\n   \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n   \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n   \"city\": \"Washington DC\",\n   \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "obtener todos los socios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of museums > ' + 0, function () {",
+									"    var data = pm.response.json()",
+									"    pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/members",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all museums",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n        \"name\": \"Bendigo Art Gallery\",\n        \"description\": \"Located in Bendigo, Victoria, we are one of the oldest and largest regional galleries in Australia. Our collection is extensive, with an emphasis on 19th century European art and Australian art from the 1800s, alongside a strong collection of contemporary Australian art.\\nOver the last decade, we have cemented a reputation for presenting innovative international exhibitions alongside a dynamic and varied suite of public programs and events.\",\n        \"address\": \"42 View Street\",\n        \"city\": \"Bendigo\",\n        \"image\": \"https://www.bendigoregion.com.au/sites/default/files/styles/large/public/2019-05/Bendigo%20Art%20Gallery.jpg?itok=mbJ4vxuK\",\n        \"artworks\": [\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Self portrait\",\n                \"year\": 1931,\n                \"description\": \"Painted in 1948, Cossington Smith's self-portrait represents her vibrant use of light-infused colour and interest in structure and form. Depicting herself in the prime of her long career, the short brushstrokes, laden with paint, build up a strong colour portrait and capture the dedication she felt towards her art in her intense focused gaze and the determined set of her lips.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.portrait.gov.au/files/b/b/2/c/i5398.jpg\"\n            },\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac120004\",\n                \"name\": \"Self portrait in the studio\",\n                \"year\": 1976,\n                \"description\": \"Similar to Brett Whiteley's other major paintings of this period, 'Self-portrait in the studio' exudes a sense of sumptuous living and the liquid presence of the harbour through what he called 'the ecstasy-like effect of Ultramarine blue'. Whiteley's tiny mirror self-portrait also reflects the influence of Eastern art in his portrayal of man as merely part of a larger landscape.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.bendigoregion.com.au/sites/default/files/2021-05/brett_whiteley_greg_self.jpg\"\n            },\n            {\n                \"id\": \"14f05d0e-1275-11ed-861d-0242ac124032\",\n                \"name\": \"Dogs\",\n                \"year\": 1975,\n                \"description\": \"Brett Whiteley felt deeply connected to animals since childhood. In fact, between 1965 and 1988 he staged four exhibitions whose predominant or exclusive subject was animals that he had observed in zoos, domestic environments and in nature.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://www.bendigoregion.com.au/sites/default/files/2021-05/brett_whiteley_greg_dogs.jpg\"\n            }\n        ],\n        \"exhibitions\": [\n            {\n                \"id\": \"14f05d0e-1275-11ed-86dd-0242ac120032\",\n                \"name\": \"Brett Whiteley: Drawing is Everything\",\n                \"description\": \"At the heart of Brett Whiteley's extraordinary career was an exceptional talent for drawing.\\nDrawing underpinned everything he did – from painting to sculpture to prints – and was fundamental to his imaginative and creative process. Whiteley's drawing is richly expressive and his bold mastery of line is instantly recognisable. \\nThis major exhibition from the Art Gallery of New South Wales is the first to explore the central place of drawing in Whiteley's practice, featuring rarely seen early works from Sydney and Europe through to the great abstracts that brought Whiteley international fame in the 1960s. Also featured are lyrical landscapes, portraits, interiors and nudes and the iconic imagery of Sydney's Lavender Bay, offering a journey through the career that established him as one of the most prominent Australian artists of the 20th century.\\nDon't miss this rare opportunity to discover the very foundations of Whiteley's creativity and process, as showcased in a collection of drawings, paintings, and sculptures suffused with the unmistakable personality of the great Australian master.\"\n            },\n            {\n                \"id\": \"14ffg05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Modern Australia\",\n                \"description\": \"This selection of works from the Gallery's collection traces the key movements in Modern Australian art and design, and the search for a distinctive Australian visual arts style throughout the mid twentieth century.\"\n            }\n        ]\n    },\n    {\n        \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\n        \"name\": \"Museum of Modern Art\",\n        \"description\": \"At The Museum of Modern Art and MoMA PS1, we celebrate creativity, openness, tolerance, and generosity. We aim to be inclusive places— both onsite and online—where diverse cultural, artistic, social, and political positions are welcome. We're committed to sharing the most thought-provoking modern and contemporary art, and hope you will join us in exploring the art, ideas, and issues of our time.\",\n        \"address\": \"11 West 53 Street, Manhattan\",\n        \"city\": \"New York City\",\n        \"image\": \"https://media.cntraveler.com/photos/5dae0325b45cd80008161cf3/master/pass/MOMA-2019_IVRPHOTO-4373_ArtistChoice_HB_007-2-2000x1125.jpg\",\n        \"artworks\": [\n            {\n                \"id\": \"14fgff05d0e-1275-11ed-861d-0242ac120032\",\n                \"name\": \"Connaissance du monde\",\n                \"year\": 1996,\n                \"description\": \"In the late 1970s, after decades of making handwritten manuscripts, Bouabré began to draw on found cardboard, combining image and text. From the 1980s onwards, as the scope of his interests grew, he embarked on an all-encompassing project, drawing from observation almost daily. He titled the open-ended series of drawings Connaissance du Monde, and worked on it until his death in 2014, systematically compiling and classifying forms, ideas, and a wide range of phenomena, including domestic objects, cloud formations, and tribal scarifications, as well as the political climate and world events.\",\n                \"type\": \"Painting\",\n                \"mainImage\": \"https://universes.art/fileadmin/_processed_/2/b/csm_14_ivory_coast_16b2369926.jpg\"\n            }\n        ],\n        \"exhibitions\": [\n            {\n                \"id\": \"14f05d0e-127fg5-11ed-861d-0242ac120032\",\n                \"name\": \"Frédéric Bruly Bouabré: World Unbound\",\n                \"description\": \"The work of the Ivorian artist Frédéric Bruly Bouabré had a single objective: to record and transmit information about the known universe. Devoting his life to a quest for knowledge, Bouabré captured and codified subjects from a range of sources, including cultural traditions, folklore, religious and spiritual belief systems, philosophy, and popular culture. “I do not work from my imagination,\\\" he once said. “I observe, and what I see delights me.”\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "obtener socios por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/members/{{socioid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"{{socioid}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get one museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/{{museum_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1e061964-1276-11ed-861d-0242ac120002\",\n    \"name\": \"Museum of Modern Art\",\n    \"description\": \"At The Museum of Modern Art and MoMA PS1, we celebrate creativity, openness, tolerance, and generosity. We aim to be inclusive places— both onsite and online—where diverse cultural, artistic, social, and political positions are welcome. We're committed to sharing the most thought-provoking modern and contemporary art, and hope you will join us in exploring the art, ideas, and issues of our time.\",\n    \"address\": \"11 West 53 Street, Manhattan\",\n    \"city\": \"New York City\",\n    \"image\": \"https://media.cntraveler.com/photos/5dae0325b45cd80008161cf3/master/pass/MOMA-2019_IVRPHOTO-4373_ArtistChoice_HB_007-2-2000x1125.jpg\",\n    \"artworks\": [\n        {\n            \"id\": \"2e061964-1276-11ed-861d-0242ac120002\",\n            \"name\": \"Connaissance du monde\",\n            \"year\": 1996,\n            \"description\": \"In the late 1970s, after decades of making handwritten manuscripts, Bouabré began to draw on found cardboard, combining image and text. From the 1980s onwards, as the scope of his interests grew, he embarked on an all-encompassing project, drawing from observation almost daily. He titled the open-ended series of drawings Connaissance du Monde, and worked on it until his death in 2014, systematically compiling and classifying forms, ideas, and a wide range of phenomena, including domestic objects, cloud formations, and tribal scarifications, as well as the political climate and world events.\",\n            \"type\": \"Painting\",\n            \"mainImage\": \"https://universes.art/fileadmin/_processed_/2/b/csm_14_ivory_coast_16b2369926.jpg\"\n        }\n    ],\n    \"exhibitions\": [\n        {\n            \"id\": \"1c061964-1276-11ed-861d-0242ac120002\",\n            \"name\": \"Frédéric Bruly Bouabré: World Unbound\",\n            \"description\": \"The work of the Ivorian artist Frédéric Bruly Bouabré had a single objective: to record and transmit information about the known universe. Devoting his life to a quest for knowledge, Bouabré captured and codified subjects from a range of sources, including cultural traditions, folklore, religious and spiritual belief systems, philosophy, and popular culture. “I do not work from my imagination,\\\" he once said. “I observe, and what I see delights me.”\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "obtener socios por id invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/members/123",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "actualizar socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Jhon Dallas\",\n    \"email\": \"jhon.dallas@mydomain.com\",\n    \"fecha_nacimiento\": \"1988-05-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members/{{socioid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"{{socioid}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update a museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums/{{museum_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"144602ac-1278-11ed-861d-0242ac120002\",\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "actualizar socio invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Jhon Dallas\",\n    \"email\": \"jhon.dallas@mydomain.com\",\n    \"fecha_nacimiento\": \"1988-05-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members/123",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC (new address)\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/museums/0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "borrar socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/members/{{socioid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"{{socioid}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "borrar socio invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/members/123",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"0"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Club Socio",
+			"item": [
+				{
+					"name": "agregar club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"club_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Hackett-Ratke\",\n    \"descripcion\": \"Carcinoma in situ of endocervix\",\n    \"address\": \"765 Buena Vista Junction\",\n    \"imagen\": \"http://dummyimage.com/181x100.png/dddddd/000000\",\n    \"fecha_fundacion\": \"2022-03-14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clubs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs"
+							]
+						},
+						"description": "This request creates a new museum. The API returns the created resource with the assigned ID."
+					},
+					"response": [
+						{
+							"name": "Add a museum",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/museums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"museums"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n   \"name\": \"Smithsonian national museum of natural history\",\n   \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n   \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n   \"city\": \"Washington DC\",\n   \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "Add a member to a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/{{socio}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"{{socio}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add an artwork",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"La Femme qui pleure\",\n    \"description\": \"The Weeping Woman, I is an elaboration of one of the central figures in Picasso’s famous mural-size painting Guernica, executed some months earlier.\",\n    \"year\": 1837,\n    \"type\": \"Painting\",\n    \"mainImage\": \"https://assets.catawiki.nl/assets/2019/3/7/2/f/5/2f5c8a17-0b06-4f26-b4a7-4fa51a430ce1.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/artworks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artworks"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-KviNwRfAdyNZmiHt915SK9j7Ask\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 18:55:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"La Femme qui pleure\",\n    \"description\": \"The Weeping Woman, I is an elaboration of one of the central figures in Picasso’s famous mural-size painting Guernica, executed some months earlier.\",\n    \"mainImage\": \"https://assets.catawiki.nl/assets/2019/3/7/2/f/5/2f5c8a17-0b06-4f26-b4a7-4fa51a430ce1.jpg\",\n    \"type\": \"Painting\",\n    \"year\": 1837,\n    \"id\": \"37d742be-e0e0-4024-b840-64cb41623aed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add a non-existing member to a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"123"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add an artwork",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"La Femme qui pleure\",\n    \"description\": \"The Weeping Woman, I is an elaboration of one of the central figures in Picasso’s famous mural-size painting Guernica, executed some months earlier.\",\n    \"year\": 1837,\n    \"type\": \"Painting\",\n    \"mainImage\": \"https://assets.catawiki.nl/assets/2019/3/7/2/f/5/2f5c8a17-0b06-4f26-b4a7-4fa51a430ce1.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/artworks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artworks"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-KviNwRfAdyNZmiHt915SK9j7Ask\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 18:55:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"La Femme qui pleure\",\n    \"description\": \"The Weeping Woman, I is an elaboration of one of the central figures in Picasso’s famous mural-size painting Guernica, executed some months earlier.\",\n    \"mainImage\": \"https://assets.catawiki.nl/assets/2019/3/7/2/f/5/2f5c8a17-0b06-4f26-b4a7-4fa51a430ce1.jpg\",\n    \"type\": \"Painting\",\n    \"year\": 1837,\n    \"id\": \"37d742be-e0e0-4024-b840-64cb41623aed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all members of a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all artwork of an invalid museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/00000000-0000-0000-0000-000000000000/artworks/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"00000000-0000-0000-0000-000000000000",
+										"artworks",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-v/cpCsS/IuHJb9v22y7e8zPAYzs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 20:24:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a member of a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/{{socioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"{{socioId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an artwork of a museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}/artworks/{{artwork_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}",
+										"artworks",
+										"{{artwork_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-ikNQ+rTE1CHOKyECsxXWUY0AeNY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 19:41:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n    \"name\": \"La Femme qui pleure\",\n    \"year\": 1837,\n    \"description\": \"The Weeping Woman, I is an elaboration of one of the central figures in Picasso’s famous mural-size painting Guernica, executed some months earlier.\",\n    \"type\": \"Painting\",\n    \"mainImage\": \"https://assets.catawiki.nl/assets/2019/3/7/2/f/5/2f5c8a17-0b06-4f26-b4a7-4fa51a430ce1.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a member non-associated to a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"    pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio no esta asociado al club\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/{{socioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"{{socioId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an artwork of an invalid museum",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/00000000-0000-0000-0000-000000000000/artworks/{{artwork_id_1}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"00000000-0000-0000-0000-000000000000",
+										"artworks",
+										"{{artwork_id_1}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-v/cpCsS/IuHJb9v22y7e8zPAYzs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 20:17:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update members of a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{socio_id_2}}\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update artworks of a museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{artwork_id_2}}\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}/artworks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}",
+										"artworks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47d-lloYeq9lZuh7ys1VbmtoB9Zh6o4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 19:56:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"00519f14-2cd5-4a21-810d-39b06319bb54\",\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\",\n    \"artworks\": [\n        {\n            \"id\": \"c3039d8c-baaf-45f3-96de-7277936a374d\",\n            \"name\": \"La Vie\",\n            \"year\": 1903,\n            \"description\": \"La Vie (Zervos I 179) is a 1903 oil painting by Pablo Picasso. It is widely regarded as the pinnacle of Picasso's Blue Period\",\n            \"type\": \"Painting\",\n            \"mainImage\": \"https://upload.wikimedia.org/wikipedia/en/thumb/1/11/La_Vie_by_Pablo_Picasso.jpg/800px-La_Vie_by_Pablo_Picasso.jpg\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update invalid members of a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio con el id dado no ha sido encontrado\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{club_id}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update artworks of a museum",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{artwork_id_2}}\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}/artworks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}",
+										"artworks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47d-lloYeq9lZuh7ys1VbmtoB9Zh6o4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 19:56:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"00519f14-2cd5-4a21-810d-39b06319bb54\",\n    \"name\": \"Smithsonian national museum of natural history\",\n    \"description\": \"The world's most popular natural history museum is dedicated to understanding the natural world and our place in it. Delve into the fascinating story of our planet, from its fiery beginnings through billions of years of transformation, and explore life on Earth through exhibitions and activities, collection objects and research that happens in the lab and in the field. The museum is larger than 18 football fields and is home to the largest natural history collection in the world.\",\n    \"address\": \"10th St. & Constitution Ave. NW, Washington, DC\",\n    \"city\": \"Washington DC\",\n    \"image\": \"https://www.si.edu/sites/default/files/newsdesk/fact_sheets/nhb2015-02891.jpg\",\n    \"artworks\": [\n        {\n            \"id\": \"c3039d8c-baaf-45f3-96de-7277936a374d\",\n            \"name\": \"La Vie\",\n            \"year\": 1903,\n            \"description\": \"La Vie (Zervos I 179) is a 1903 oil painting by Pablo Picasso. It is widely regarded as the pinnacle of Picasso's Blue Period\",\n            \"type\": \"Painting\",\n            \"mainImage\": \"https://upload.wikimedia.org/wikipedia/en/thumb/1/11/La_Vie_by_Pablo_Picasso.jpg/800px-La_Vie_by_Pablo_Picasso.jpg\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a member of a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/{{socioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"{{socioId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an artwork of a museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/{{museum_id}}/artworks/{{artwork_id_2}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"{{museum_id}}",
+										"artworks",
+										"{{artwork_id_2}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 20:50:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete a member non-associated to a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"    pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"    var data = pm.response.json();",
+									"    pm.expect(data.message).to.eql(\"El socio no esta asociado al club\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clubs/{{clubId}}/members/{{socioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clubs",
+								"{{clubId}}",
+								"members",
+								"{{socioId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an artwork of an invalid museum",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/museums/00000000-0000-0000-0000-000000000000/artworks/{{artwork_id_2}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"museums",
+										"00000000-0000-0000-0000-000000000000",
+										"artworks",
+										"{{artwork_id_2}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-v/cpCsS/IuHJb9v22y7e8zPAYzs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Aug 2022 20:50:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

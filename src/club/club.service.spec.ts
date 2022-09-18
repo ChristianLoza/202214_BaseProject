@@ -82,7 +82,7 @@ describe('ClubService', () => {
     expect(storedClub.nombre).toEqual(newClub.nombre);
   });
 
-  it('Crear deberia retornar un error para club con descripcion mas de 100 caracteres', async () => {
+  it('Crear  100 caracteres', async () => {
     const club: ClubEntity = {
       id: '',
       nombre: faker.name.fullName(),
@@ -98,7 +98,7 @@ describe('ClubService', () => {
     );
   });
 
-  it('Update deberia modificar un club', async () => {
+  it('Update  club', async () => {
     const club: ClubEntity = clubList[0];
     club.nombre = 'New name';
 
@@ -112,7 +112,7 @@ describe('ClubService', () => {
     expect(storedClub.nombre).toEqual(club.nombre);
   });
 
-  it('update deberia arrojar un error para un club invalido', async () => {
+  it('update club invalido', async () => {
     let club: ClubEntity = clubList[0];
     club = {
       ...club,
@@ -124,7 +124,7 @@ describe('ClubService', () => {
     );
   });
 
-  it('update deberia arrojar un error para un club con una descripcion de más de 100 caracteres', async () => {
+  it('update 100 caracteres', async () => {
     let club: ClubEntity = clubList[0];
     club = {
       ...club,
@@ -136,7 +136,7 @@ describe('ClubService', () => {
     );
   });
 
-  it('delete deberia remover un club', async () => {
+  it('delete  club', async () => {
     const club: ClubEntity = clubList[0];
     await service.delete(club.id);
 
@@ -146,7 +146,7 @@ describe('ClubService', () => {
     expect(deletedClub).toBeNull();
   });
 
-  it('delete deberia arrojar un error para un club invalido', async () => {
+  it('delete invalido', async () => {
     const club: ClubEntity = clubList[0];
     await service.delete(club.id);
     await expect(() => service.delete('0')).rejects.toHaveProperty(

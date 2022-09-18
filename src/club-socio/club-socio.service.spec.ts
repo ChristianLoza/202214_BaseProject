@@ -59,7 +59,7 @@ describe('ClubSocioService', () => {
     expect(service).toBeDefined();
   });
 
-  it('addMemberToClub debe agregar un socio a un club', async () => {
+  it('addMemberToClub  club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),
@@ -87,7 +87,7 @@ describe('ClubSocioService', () => {
     );
   });
 
-  it('addMemberToClub debe arrojar un excepcion para un socio invalido', async () => {
+  it('addMemberToClub invalido', async () => {
     const newClub: ClubEntity = await clubRepository.save({
       nombre: faker.name.fullName(),
       imagen: faker.image.imageUrl(),
@@ -100,7 +100,7 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('addMemberToClub debe arrojar una excepcion para un club invalido', async () => {
+  it('addMemberToClub invalido', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),
@@ -112,19 +112,19 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('findMembersFromClub debe retornar los socios por club', async () => {
+  it('findMembersFromClub  club', async () => {
     const socios: SocioEntity[] = await service.findMembersFromClub(club.id);
     expect(socios.length).toBe(5);
   });
 
-  it('findMembersFromClub debe arrojar una excepcion para un club invalido', async () => {
+  it('findMembersFromClub invalido', async () => {
     await expect(() => service.findMembersFromClub('0')).rejects.toHaveProperty(
       'message',
       'Sin coincidencias',
     );
   });
 
-  it('findMemberFromClub debe retornar un socio por club', async () => {
+  it('findMemberFromClub club', async () => {
     const socio: SocioEntity = socioList[0];
     const storedSocio: SocioEntity = await service.findMemberFromClub(
       club.id,
@@ -136,20 +136,20 @@ describe('ClubSocioService', () => {
     expect(storedSocio.fecha_nacimiento).toStrictEqual(socio.fecha_nacimiento);
   });
 
-  it('findMemberFromClub debe arrojar una excepcion por un socio invalido', async () => {
+  it('findMemberFromClub invalido', async () => {
     await expect(() =>
       service.findMemberFromClub(club.id, '0'),
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('findMemberFromClub debe arrojar una excepcion por un club invalido', async () => {
+  it('findMemberFromClub  invalido', async () => {
     const socio: SocioEntity = socioList[0];
     await expect(() =>
       service.findMemberFromClub('0', socio.id),
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('findMemberFromClub arroja una excepcion para un socio que no esta asociado al club', async () => {
+  it('findMemberFromClub error club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),
@@ -161,7 +161,7 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'El socio no esta asociado al club');
   });
 
-  it('updateMembersFromClub debe actualizar la lista de socios de un club', async () => {
+  it('updateMembersFromClub   club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),
@@ -182,7 +182,7 @@ describe('ClubSocioService', () => {
     );
   });
 
-  it('updateMembersFromClub debe arrojar una excepción por un club invalido', async () => {
+  it('updateMembersFromClub invalido', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),
@@ -194,7 +194,7 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('updateMembersFromClub debe arrojar una excepción por un socio invalido', async () => {
+  it('updateMembersFromClub   invalido', async () => {
     const newSocio: SocioEntity = socioList[0];
     newSocio.id = '0';
 
@@ -203,7 +203,7 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('deleteMemberFromClub debe eliminar un socio de un club', async () => {
+  it('deleteMemberFromClub club', async () => {
     const socio: SocioEntity = socioList[0];
 
     await service.deleteMemberFromClub(club.id, socio.id);
@@ -219,13 +219,13 @@ describe('ClubSocioService', () => {
     expect(deletedSocio).toBeUndefined();
   });
 
-  it('deleteMemberFromClub debe arrojar una excepción para un socio invalido', async () => {
+  it('deleteMemberFromClub invalido', async () => {
     await expect(() =>
       service.deleteMemberFromClub(club.id, '0'),
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('deleteMemberFromClub debe arrojar una excepción para un club invalido', async () => {
+  it('deleteMemberFromClub exception invalido', async () => {
     const socio: SocioEntity = socioList[0];
 
     await expect(() =>
@@ -233,7 +233,7 @@ describe('ClubSocioService', () => {
     ).rejects.toHaveProperty('message', 'Sin coincidencias');
   });
 
-  it('deleteMemberFromClub debe arrojar una excepción para un socio no asociado al club', async () => {
+  it('deleteMemberFromClub no asociado al club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.fullName(),
       email: faker.internet.email(),

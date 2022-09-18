@@ -41,27 +41,27 @@ describe('SocioService', () => {
     expect(service).toBeDefined();
   });
 
-  it('findAll debe retornar todos los socios', async () => {
+  it('findAll  socios', async () => {
     const socios: SocioEntity[] = await service.findAll();
     expect(socios).not.toBeNull();
     expect(socios).toHaveLength(socioList.length);
   });
 
-  it('findOne debe retornar un socio por id', async () => {
+  it('findOne  id', async () => {
     const storedSocio: SocioEntity = socioList[0];
     const socio: SocioEntity = await service.findOne(storedSocio.id);
     expect(socio).not.toBeNull();
     expect(socio.nombre).toEqual(storedSocio.nombre);
   });
 
-  it('findOne deberia arrojar un excepcion para un socio invalido', async () => {
+  it('findOne invalido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
       'Sin coincidencias',
     );
   });
 
-  it('Crear deberia retornar un nuevo socio', async () => {
+  it('create socio', async () => {
     const socio: SocioEntity = {
       id: '',
       nombre: faker.name.fullName(),
@@ -80,7 +80,7 @@ describe('SocioService', () => {
     expect(storedSocio.nombre).toEqual(newSocio.nombre);
   });
 
-  it('Crear deberia retornar un error para socio con email sin @', async () => {
+  it('create withour at', async () => {
     const socio: SocioEntity = {
       id: '',
       nombre: faker.name.fullName(),
@@ -95,7 +95,7 @@ describe('SocioService', () => {
     );
   });
 
-  it('Update deberia modificar un socio', async () => {
+  it('Update socio', async () => {
     const socio: SocioEntity = socioList[0];
     socio.nombre = 'New name';
 
@@ -109,7 +109,7 @@ describe('SocioService', () => {
     expect(storedSocio.nombre).toEqual(socio.nombre);
   });
 
-  it('update deberia arrojar un error para un socio invalido', async () => {
+  it('update  invalido', async () => {
     let socio: SocioEntity = socioList[0];
     socio = {
       ...socio,
@@ -121,7 +121,7 @@ describe('SocioService', () => {
     );
   });
 
-  it('update deberia arrojar un error para un socio con un email sin @', async () => {
+  it('update ', async () => {
     let socio: SocioEntity = socioList[0];
     socio = {
       ...socio,
@@ -133,7 +133,7 @@ describe('SocioService', () => {
     );
   });
 
-  it('delete deberia remover un socio', async () => {
+  it('delete', async () => {
     const socio: SocioEntity = socioList[0];
     await service.delete(socio.id);
 
@@ -143,7 +143,7 @@ describe('SocioService', () => {
     expect(deletedSocio).toBeNull();
   });
 
-  it('delete deberia arrojar un error para un socio invalido', async () => {
+  it('delete', async () => {
     const socio: SocioEntity = socioList[0];
     await service.delete(socio.id);
     await expect(() => service.delete('0')).rejects.toHaveProperty(
